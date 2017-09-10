@@ -20,30 +20,28 @@
         myQuiz[0] = new Array();// this array hold the questions and answers to the first questions in the quiz
         
         myQuiz[0][0] = "<h3>What is 2+2?</h3>";//question 1
-        myQuiz[0][1] = "1";//answer a question 1
-        myQuiz[0][2] = "2";// answer b question 1
-        myQuiz[0][3] = "3";// answer c question 1
-        myQuiz[0][4] = "4";// answer d question 1
+        myQuiz[0][1] = new Array();
+            
+        myQuiz[0][1][0] = "1";//answer a question 1
+        myQuiz[0][1][1] = "2";// answer b question 1
+        myQuiz[0][1][2] = "3";// answer c question 1
+        myQuiz[0][1][3] = "4";// answer d question 1
         
         
-        //var loopCounter1;// counter for question arrays
+        var loopCounter1 = 0;// counter for question arrays
         var loopCounter2 = 0;// counter for answers
         
         
-        document.write(myQuiz[0][loopCounter2]+"<form action=\"\">");//begins loop for first question
-        
-        loopCounter2++;/*increase loop counter 
-        <> Since the first element in the array is a question, 
-        I did this outside the intial loop. The remaining elements are answers */
+        document.write(myQuiz[0][0]+"<form action=\"\">");//begins loop for first question
         
         
         /* PROBLEM I need an "while array still exists" function to put in this while loop*/
         
-        while (loopCounter2 < 5)// while loop to filter through answers
+        while (loopCounter2 < 4)// while loop to filter through answers
             {
                 // these two lines writes an answer and radio button to document
                 document.write("<input type=\"radio\" name=\"answer\" value=\"" + 
-                               myQuiz[0][loopCounter2] + "\"> "+ myQuiz[0][loopCounter2]+"<br>");
+                               myQuiz[loopCounter1][1][loopCounter2] + "\"> "+ myQuiz[loopCounter1][1][loopCounter2]+"<br>");
                 
                 //this increases the loop to next question
                 loopCounter2++;
