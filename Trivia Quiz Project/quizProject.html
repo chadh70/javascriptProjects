@@ -30,6 +30,14 @@
         
         var loopCounter1 = 0;// counter for question arrays
         var loopCounter2 = 0;// counter for answers
+              
+
+// CODE REFERENCED AND MODIFIED FROM W3C
+   
+    myQuiz[0][1].sort(function(a, b){return 0.5 - Math.random()}); 
+        
+ // END OF W3C Reference 
+        
         
         
         document.write(myQuiz[0][0]+"<form action=\"\">");//begins loop for first question
@@ -45,6 +53,9 @@
                 
                 //this increases the loop to next question
                 loopCounter2++;
+                
+                
+                
             }
         
         document.write("</form><hr>");// this closes the form
