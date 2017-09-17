@@ -1,5 +1,7 @@
 <html><!-- begin html code -->
-
+    <head><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+    
     <body style="padding : 25px;"> <!-- begin document body -->
     
     <h1> <!-- heading -->
@@ -13,58 +15,154 @@
         
         <hr>
         
-    <script>//begin javascript code
+    <script lang="text/javascript">//begin javascript code
         
         var myQuiz = new Array();//create an array to store questions
+        
+        var grade = 0;
+        var runningGrade;
         
         myQuiz[0] = new Array();// this array hold the questions and answers to the first questions in the quiz
         
         myQuiz[0][0] = "<h3>What is 2+2?</h3>";//question 1
         myQuiz[0][1] = new Array();
+        myQuiz[0][2]=4;
             
         myQuiz[0][1][0] = "1";//answer a question 1
         myQuiz[0][1][1] = "2";// answer b question 1
         myQuiz[0][1][2] = "3";// answer c question 1
         myQuiz[0][1][3] = "4";// answer d question 1
         
+        myQuiz[1] = new Array();// this array hold the questions and answers to the seond questions in the quiz
+    
+        myQuiz[1][0] = "<h3>What is 2*2?</h3>";//question 2
+        myQuiz[1][1] = new Array();
+        myQuiz[1][2]=4;
+        
+        
+        myQuiz[1][1][0] = "1";//answer a question 2
+        myQuiz[1][1][1] = "2";// answer b question 2
+        myQuiz[1][1][2] = "3";// answer c question 2
+        myQuiz[1][1][3] = "4";// answer d question 2
+        
+        
+        myQuiz[2] = new Array();// this array hold the questions and answers to the third questions in the quiz        
+        
+        myQuiz[2][0] = "<h3>What is 2/2?</h3>";//question 3
+        myQuiz[2][1] = new Array();
+        myQuiz[2][2]=1;
+            
+        myQuiz[2][1][0] = "1";//answer a question 3
+        myQuiz[2][1][1] = "2";// answer b question 3
+        myQuiz[2][1][2] = "3";// answer c question 3
+        myQuiz[2][1][3] = "4";// answer d question 3
+        
+        myQuiz[3] = new Array();// this array hold the questions and answers to the fourth questions in the quiz
+     
+        
+        myQuiz[3][0] = "<h3>What is 2-1?</h3>";//question 4
+        myQuiz[3][1] = new Array();
+        myQuiz[3][2]=1;
+            
+        myQuiz[3][1][0] = "1";//answer a question 4
+        myQuiz[3][1][1] = "2";// answer b question 4
+        myQuiz[3][1][2] = "3";// answer c question 4
+        myQuiz[3][1][3] = "4";// answer d question 4
+        
         
         var loopCounter1 = 0;// counter for question arrays
         var loopCounter2 = 0;// counter for answers
-              
+        var loopCounter3 = 0;// counter for answer check
+        
+        
+        //randomizes questions
+        //myQuiz.sort(function(a, b){return 0.5 - Math.random()});
+        
+        
+        //randomizes answers
+        //myQuiz[loopCounter1][1].sort(function(a, b){return 0.5 - Math.random()});
+        
+       // nextQuestion();
+        
+       // function nextQuestion()
+        //{
+        
+            document.write(myQuiz[loopCounter1][0]+"<form action=\"\" >");//begins loop for first question
 
-// CODE REFERENCED AND MODIFIED FROM W3C
-   
-    myQuiz[0][1].sort(function(a, b){return 0.5 - Math.random()}); 
-        
- // END OF W3C Reference 
-        
-        
-        
-        document.write(myQuiz[0][0]+"<form action=\"\">");//begins loop for first question
-        
-        
-        /* PROBLEM I need an "while array still exists" function to put in this while loop*/
-        
-        while (loopCounter2 < 4)// while loop to filter through answers
-            {
-                // these two lines writes an answer and radio button to document
-                document.write("<input type=\"radio\" name=\"answer\" value=\"" + 
-                               myQuiz[loopCounter1][1][loopCounter2] + "\"> "+ myQuiz[loopCounter1][1][loopCounter2]+"<br>");
-                
-                //this increases the loop to next question
-                loopCounter2++;
-                
-                
-                
-            }
-        
-        document.write("</form><hr>");// this closes the form
-        
 
+                while (loopCounter2 < 4)// while loop to filter through answers
+                    {
+                        // these two lines writes an answer and radio button to document
+                        document.write("<input type=\"radio\" id=\"answerRadio" +loopCounter1+ loopCounter2 +
+                                       "\" name=\"answer\" value=\"" + myQuiz[loopCounter1][1][loopCounter2] + 
+                                       "\"> "+ myQuiz[loopCounter1][1][loopCounter2]+"<br>");
+
+                        //this increases the loop to next question
+                        loopCounter2++;       
+
+                    }
+
+
+            document.write("<br><button onclick=\"checkAnswer()\">Next Question</button></form><hr>");// this closes the form
+
+            
+            
+            
+       // }
+        
+    
+        
+        
+        function checkAnswer()
+        {     
+            
+            var checkedAnswer = false;
+            
+            
+            while(loopCounter3 < myQuiz[loopCounter1][1].length)
+                {
+                    
+                    if (document.getElementById("answerRadio" +loopCounter1+loopCounter3).checked)
+                    {
+
+                        checkedAnswer = document.getElementById("answerRadio"+loopCounter1+loopCounter3).value;
+                        
+                    }
+        
+                    
+                    loopCounter3++;
+                    
+                }
+        
+            
+            
+            if(checkedAnswer == myQuiz[loopCounter1][2])
+                {
+                    grade++;
+                    runningGrade++;
+                }
+            
+            
+            if(grade>0)
+                {
+                    alert("Correct!")
+                }
+            else
+                {
+                    alert("Incorrect.")
+                }
+
+            
+            loopCounter1++;
+            grade=0;
+        }
+         
+             
         
         //END OF SCRIPT
         </script>
-    
+        
+
     
     </body>
 

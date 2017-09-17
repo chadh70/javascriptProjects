@@ -1,0 +1,61 @@
+<html>
+
+
+<body>
+
+    <script>
+        
+        
+        var name = window.prompt("What is your name? Type Exit to escape.","");
+        var phone = window.prompt("What is your phone? Type Exit to escape.","");
+        var order = window.prompt("Place order here. Type Exit to escape.","");
+        var orders = new Array();
+        
+        //var orderArray = new Array(name, phone, order);
+        
+        var counter = 0;
+        
+        function takeOrder(n,p,o)
+        {
+            //for(loopCounter=0; loopCounter < 3; loopCounter++)
+            
+                document.write(n+"<br>"+p+"<br>"+o+"<br>")
+                
+                orders[counter][0] = name;
+                orders[counter][1] = phone;
+                orders[counter][2] = order;
+                    
+                
+                counter++;
+            //document.write(orderArray[loopCounter]+"<br>");
+        
+        }
+        
+        
+        //OBJECTIVE: As a user I want to continously enter data until an exit code is provided.
+        var exit = 0;//this stands for exit boolean value
+        
+        while(exit != 1)
+            {
+                if(name == "Exit" || phone == "Exit" || order == "Exit")
+                   {
+                    takeOrder(name,phone,order);
+                   }
+                else
+                   {
+                    exit = 1;
+                   }
+
+                   
+            }
+        
+        
+        
+    
+    </script>
+
+
+</body>
+
+
+</html>
