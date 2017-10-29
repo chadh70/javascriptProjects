@@ -1,0 +1,114 @@
+<html>
+<body>
+<h1> Bandager - Manage your band!</h1>
+   
+<form>
+  Venue:<br>
+  <input type="text" name="venue" id="venue"><br>
+  Address:<br>
+  <input type="text" name="address" id="address"><br>
+    City:<br>
+  <input type="text" name="city" id="city"><br>
+    State:<br>
+  <input type="text" name="state" id="state"><br>
+    Zip:<br>
+  <input type="text" name="zip" id="zip"><br>
+    Date of show:<br>
+  <input type="text" name="date" id="date"><br>
+    Time of show:<br>
+  <input type="text" name="time" id="time"><br>
+    Price of entry:<br>
+  <input type="text" name="price" id="price"><br>
+    Phone number:<br>
+  <input type="text" name="phone" id="phone"><br>
+    Website:<br>
+  <input type="text" name="website" id="website"><br>
+    Additional acts:<br>
+  <input type="text" name="acts" id="acts"><br>
+</form>
+    
+    <button type="button" onclick="addShow()">Add Show</button>
+    <button type="button" onclick="displayShows()">Display Shows</button>
+    
+<script>
+    
+    var showsArray = new Array();
+    
+
+    function show(venue, address, city, state, zip, date, time, price, phone, website, acts)
+    {
+        this.venue = venue;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.date = date;
+        this.time = time;
+        this.price = price;
+        this.phone = phone;
+        this.website = website;
+        this.acts = acts;
+    }
+    
+    function addShow()
+    {
+        var singleShow = new show(document.getElementById("venue").value,
+                                  document.getElementById("address").value,
+                                  document.getElementById("city").value,
+                                  document.getElementById("state").value,
+                                  document.getElementById("zip").value,
+                                  document.getElementById("date").value,
+                                  document.getElementById("time").value,
+                                  document.getElementById("price").value,
+                                  document.getElementById("phone").value,
+                                  document.getElementById("website").value,
+                                  document.getElementById("acts").value
+                                 );
+        
+        
+        
+        updateShows(singleShow);
+        
+        
+    }
+    
+    var showsOutput="";
+    
+    function updateShows(s)
+    {
+        
+        showsOutput += "<tr><td style=\"border: 1px solid black;\">"+s.venue+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.address+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.city+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.state+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.zip+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.date+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.time+"</td style=\"border: 1px solid black;\">"+
+                    "<td style=\"border: 1px solid black;\">"+s.price+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.phone+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.website+"</td>"+
+                    "<td style=\"border: 1px solid black;\">"+s.acts+"</td></tr>";
+        
+        
+    }
+    
+    function displayShows()
+    {
+        document.write("<table style=\"border: 1px solid black;\"><tr><th style=\"border: 1px solid black;\">Venue</th>"+
+                    "<th style=\"border: 1px solid black;\">Address</th>"+
+                    "<th style=\"border: 1px solid black;\">City</th>"+
+                    "<th style=\"border: 1px solid black;\">State</th>"+
+                    "<th style=\"border: 1px solid black;\">Zip</th>"+
+                    "<th style=\"border: 1px solid black;\">Date</th>"+
+                    "<th style=\"border: 1px solid black;\">Time</th>"+
+                    "<th style=\"border: 1px solid black;\">Price</th>"+
+                    "<th style=\"border: 1px solid black;\">Phone</th>"+
+                    "<th style=\"border: 1px solid black;\">Website</th>"+
+                    "<th style=\"border: 1px solid black;\">Acts</th></tr>"+showsOutput+"</table>");
+    }
+ 
+
+</script>
+
+</body>
+</html>

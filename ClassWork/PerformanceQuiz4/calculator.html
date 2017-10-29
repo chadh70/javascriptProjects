@@ -1,0 +1,274 @@
+<html>
+
+    <head>
+<style>
+    textarea{
+        resize:none;
+    }
+        </style>
+    
+    
+    </head>
+    
+    
+<body>
+<!-- the display -->
+    
+<textarea rows="1" cols="10" id="display"></textarea>
+    
+<br>
+<form>
+
+<!--form data-->
+<input type="button" value="1" onClick="calculate(1)">
+<input type="button" value="2" onClick="calculate(2)">
+<input type="button" value="3" onClick="calculate(3)"><br>
+<input type="button" value="4" onClick="calculate(4)">
+<input type="button" value="5" onClick="calculate(5)">
+<input type="button" value="6" onClick="calculate(6)"><br>
+<input type="button" value="7" onClick="calculate(7)">
+<input type="button" value="8" onClick="calculate(8)">
+<input type="button" value="9" onClick="calculate(9)"><br>
+<input type="button" value="0" onClick="calculate(0)"><br><br>
+<input type="button" value="+" onClick="calculate('a')">
+<input type="button" value="-" onClick="calculate('s')">
+<input type="button" value="x" onClick="calculate('m')">
+<input type="button" value="/" onClick="calculate('d')"><br>
+<input type="button" value="." onClick="calculate('p')"><br>
+<input type="button" value="=" onClick="calculate('e')"><br>
+<input type="button" value="C" onClick="calculate('c')"><br>
+
+
+
+
+</form>
+
+<script>
+    
+    var number1;//inital value of number1
+    var number2;//inital value of number2
+    var periodBool=true;//logical operator that prevents multiple periods
+    var operation;//tracks which operation when equals is pressed
+    
+    
+    var finalAnswer=0;//this variable will hold the final answer
+
+    
+    //this is the inital switch function that generates first level input
+    function calculate(x)
+    {
+        switch(x)//this switch routes to the number functions, operator functions, or equal/clear
+        {
+            case 1:
+                number(1);
+                break;
+                
+            case 2:
+                number(2);
+                break;
+                
+            case 3:
+                number(3);
+                break;
+                
+            case 4:
+                number(4);
+                break;
+                
+            case 5:
+                number(5);
+                break;
+                
+            case 6:
+                number(6);
+                break;
+                
+            case 7:
+                number(7);
+                break;
+                
+            case 8:
+                number(8);
+                break;
+                
+            case 9:
+                number(9);
+                break;
+                
+            case 0:
+                number(0);
+                break;
+                
+                
+            //the operator cases provide a way to know what function to use
+            case "a":
+                newNumber();
+                operation="a";
+                break;
+                
+            case "s":
+                newNumber();
+                operation="s";
+                break;
+                
+                
+            case "m":
+                newNumber();
+                operation="m";
+                break;
+                
+            case "d":
+                newNumber();
+                operation="d";
+                break;
+                
+            case "p":
+                number("p");
+                break;
+                
+            case "e":
+                equals();
+                break;
+                
+            case "c":
+                clear();
+                break;
+                
+        }
+        
+        
+        function number(n)//this number function works with all numerical buttons to update display
+        {
+            var display;
+            
+            if(n=="p")
+                {
+                  display = document.getElementById("display").value;
+                    
+                    //this prevents multiple periods
+                    if(periodBool)
+                        {
+                           display += ".";
+                    document.getElementById("display").innerHTML=display;
+                            periodBool = false;
+                        }  
+                }
+            else{
+                
+                display = document.getElementById("display").value;
+                    display += n;
+                    document.getElementById("display").innerHTML=display;
+                
+            }
+                    
+ 
+                    
+                
+                    
+                    
+         
+            
+        }
+        
+        
+        //logic to store a new number
+        function newNumber()
+        {
+            
+            if(number1==null)
+               {
+               number1 = Number(document.getElementById("display").value);
+                   number2Bool=false;
+                   resetDisplay();
+               }
+                else{
+                    number2 = Number(document.getElementById("display").value);
+                    resetDisplay();
+                }
+              
+        }
+        
+        
+        
+        //calculates everything
+        function equals()
+        {
+            newNumber();
+            
+            switch(operation)
+            {//addition
+                case"a":
+                    finalAnswer = number1+number2;
+                    document.getElementById("display").innerHTML=finalAnswer;
+                    break;
+                    
+                    
+                    
+                    //subtraction
+                case"s":
+                    finalAnswer = number1-number2;
+                    document.getElementById("display").innerHTML=finalAnswer;
+                    break;
+                    
+                    //multiply
+                case"m":
+                    finalAnswer = number1*number2;
+                    document.getElementById("display").innerHTML=finalAnswer;
+                    break;
+                    
+                  //divide  
+                case"d":
+                    finalAnswer = number1/number2;
+                    document.getElementById("display").innerHTML=finalAnswer;
+                    break;
+            
+                
+            }
+            
+            //sets number1=finalanswer
+            number1=finalAnswer;
+            number2="";//makes null
+            
+            operation="";//makes null
+            
+            
+            
+            
+        }
+        
+        //resets display & enables period
+        
+        function resetDisplay()
+        {
+            document.getElementById("display").innerHTML="";
+            periodBool=true;
+        }
+        
+        
+        //resets the program
+        function clear()
+        {
+            number1=null;
+            number2=null;
+            resetDisplay();
+            operation=null;
+        }
+        
+        
+        
+    }
+    
+    
+    
+
+</script>
+
+
+
+</body>
+
+
+
+
+
+</html>

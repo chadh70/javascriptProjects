@@ -1,0 +1,65 @@
+<html>
+
+    <head>
+        <style>
+            body {
+                background-color: #e6e6ff;
+            }
+
+            img {
+                width:150px;
+                padding:15px;
+                
+            }
+            
+            
+        </style>
+</head>
+
+<body onload="getName()">
+    
+<p id = "text"></p>
+    
+    <p id = "animal"></p>
+    
+    <script>
+        
+        var descriptions = new Array("Cockatoo","Flamingo","Giraffe","Iguana","Lemur","Lion","Peacock","Puma","Rhino","Zebra");
+        
+        function getName()
+        {
+            var name = prompt("Please enter your name.", "");
+            
+            document.getElementById("text").innerHTML = "Hi "+name+"! Click on an image of an animal for its name.";
+            
+            window.defaultstatus = name;
+
+        }
+        
+        
+        function showName(n)
+        {
+            document.getElementById("animal").innerHTML = descriptions[n];
+        }
+    </script>
+    
+<div id=images>
+    
+    <img src="images/cockatoo.jpg" alt="cockatoo" onmouseover="showName(0)">
+    <img src="images/flamingo.jpg" alt="flamingo" onmouseover="showName(1)">
+    <img src="images/giraffe.jpeg" alt="giraffe" onmouseover="showName(2)">
+    <img src="images/iguana.jpeg" alt="iguana" onmouseover="showName(3)">
+    <img src="images/lemur.jpg" alt="lemur" onmouseover="showName(4)">
+    <img src="images/lion.jpg" alt="lion" onmouseover="showName(5)">
+    <img src="images/peacock.jpg" alt="peacock" onmouseover="showName(6)">
+    <img src="images/puma.jpg" alt="puma" onmouseover="showName(7)">
+    <img src="images/rhino.jpg" alt="rhino" onmouseover="showName(8)">
+    <img src="images/zebra.jpg" alt="zebra" onmouseover="showName(9)">
+    
+    </div>
+
+</body>
+
+
+
+</html>

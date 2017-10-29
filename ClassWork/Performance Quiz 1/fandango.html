@@ -1,0 +1,235 @@
+<html>
+<body>
+<h1> Bandager - Manager your band!</h1>
+    
+    
+
+    
+<script>
+
+    
+    
+
+function event(venue,address,city,state,zip,date,time,ticket,phone,website,acts)
+{
+  this.venue=venue;
+            this.address=address;
+            this.city=city;
+            this.state=state;
+            this.zip=zip;
+            this.date=date;
+            this.time=time;
+            this.ticket=ticket;
+            this.phone=phone;
+            this.website=website;
+            this.acts=acts;
+}
+
+//GETTERS
+        
+        event.prototype.getVenue = function()
+        {
+            return this.venue;
+        }
+        
+        event.prototype.getAddress = function()
+        {
+            return this.address;
+        }
+        event.prototype.getCity = function()
+        {
+            return this.city;
+        }
+        event.prototype.getState = function()
+        {
+            return this.state;
+        }
+        event.prototype.getZip = function()
+        {
+            return this.zip;
+        }
+        event.prototype.getDate = function()
+        {
+            return this.date;
+        }
+        event.prototype.getTime = function()
+        {
+            return this.time;
+        }
+        event.prototype.getTicket = function()
+        {
+            return this.ticket;
+        }
+        event.prototype.getPhone = function()
+        {
+            return this.Phone;
+        }
+        event.prototype.getWebsite = function()
+        {
+            return this.website;
+        }
+        event.prototype.getActs = function()
+        {
+            return this.acts;
+        }
+        
+        
+        //Setters
+        event.prototype.setVenue = function(venue)
+        {
+            this.venue=venue;
+        }
+        event.prototype.setAddress = function(address)
+        {
+            this.address=address;
+        }
+        event.prototype.setCity = function(city)
+        {
+            this.city=city;
+        }
+        event.prototype.setState = function(state)
+        {
+            this.state=state;
+        }
+        event.prototype.setZip = function(zip)
+        {
+            this.zip=zip;
+        }
+        event.prototype.setDate = function(date)
+        {
+            this.date=date;
+        }
+        event.prototype.setTime = function(time)
+        {
+            this.time=time;
+        }
+        event.prototype.setTicket = function(ticket)
+        {
+            this.ticket=ticket;
+        }
+        event.prototype.setPhone = function(phone)
+        {
+            this.phone=phone;
+        }
+        event.prototype.setWebsite = function(website)
+        {
+            this.website=website;
+        }
+        event.prototype.setActs = function(acts)
+        {
+            this.acts=acts;
+        }
+        
+        
+
+function eventLog() 
+{
+   this.log = new Array();
+}
+
+eventLog.prototype.addEvent = function(venue, address, city, state,zip,date,time,ticket,phone,website,acts) 
+{
+   this.log[venue] = new event(venue, address, city, state,zip,date,time,ticket,phone,website,acts);
+}
+
+
+eventLog.prototype.getEvent = function() 
+{
+  var event;
+     var eventTableHTML = "<table border=1>";
+
+     for (event in this.log)
+     {
+       eventTableHTML += "<tr><td>";
+	   eventTableHTML += this.log[event].getVenue();
+	   eventTableHTML += "</td>";
+	
+	   eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getAddress();
+	   eventTableHTML += "</td>";
+
+	   eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getCity();
+	   eventTableHTML += "</td>";
+	   
+   	   eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getState();
+	   eventTableHTML += "</td>";
+         
+         eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getZip();
+	   eventTableHTML += "</td>";
+         
+         eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getDate();
+	   eventTableHTML += "</td>";
+         
+         eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getTime();
+	   eventTableHTML += "</td>";
+         
+         eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getTicket();
+	   eventTableHTML += "</td>";
+         eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getPhone();
+         
+         eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getWebsite();
+	   eventTableHTML += "</td>";
+	   eventTableHTML += "</td>";
+         
+         eventTableHTML += "<td>";
+	   eventTableHTML += this.log[event].getActs();
+	   eventTableHTML += "</td>";
+         
+         
+         
+         
+       eventTableHTML += "</tr>";
+     }
+       eventTableHTML += "</table>";
+    
+    
+     return eventTableHTML;
+}
+
+    var show = new eventLog();
+    
+    /*
+    var questions = new Array("What is the venue?","What is the address?","What is the city?","What is the state?","What is the zip?","What is the date?","What is the time?","What is the ticket?","What is the phone?","What is the website?","What is the supporting acts?");
+
+    var answers = new Array();
+    
+    var notQuit = true; */
+    
+    
+
+    
+
+        
+        show.addEvent("answers[p][0]",
+                      "answers[p][1]",
+                      "answers[p][2]",
+                      "answers[p][3]",
+                      "answers[p][4]",
+                      "answers[p][5]",
+                      "answers[p][6]",
+                      "answers[p][7]",
+                      "answers[p][8]",
+                      "answers[p][9]",
+                      "answers[p][10]"
+                     );
+            
+        
+    
+
+
+
+
+document.write(show.getEvent());
+
+</script>
+
+</body>
+</html>

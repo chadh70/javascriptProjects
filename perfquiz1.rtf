@@ -1,0 +1,262 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <html>\
+\
+<body>\
+\
+<form action="">\
+    \
+  Venue:<br>\
+  <input type="text" name="venue" id="Venue"><br>\
+    \
+  Address:<br>\
+  <input type="text" name="address" id="Address"><br>\
+    \
+  City:<br>\
+  <input type="text" name="address" id="City"><br>\
+    \
+  State:<br>\
+  <input type="text" name="address" id="State"><br>\
+    \
+  ZIP:<br>\
+  <input type="text" name="address" id="Zip"><br>\
+    \
+  Date:<br>\
+  <input type="text" name="address" id="Date"><br>\
+    \
+  Time:<br>\
+  <input type="text" name="address" id="Time"><br>\
+    \
+  Ticket Price:<br>\
+  <input type="text" name="address" id="Ticket"><br>\
+    \
+  Phone:<br>\
+  <input type="text" name="address" id="Phone"><br>\
+    \
+  Website:<br>\
+  <input type="text" name="address" id="Website"><br>\
+    \
+  Supporting acts:<br>\
+  <input type="text" name="address" id="Support"><br>\
+    \
+    \
+  <br>\
+    \
+    \
+</form> \
+    \
+    <button onclick="displayShow()">Display</button>\
+    <button onclick="add()">Add Show</button>\
+\
+    <script>\
+    \
+        var counter=0;\
+        \
+        var shows = new Array();\
+        \
+        show(document.getElementById("Venue").value,\
+            document.getElementById("Address").value,\
+             \
+            );\
+        \
+       /* function displayAllShows()\
+        \{\
+            \
+            var i;\
+                 \
+            for(i=0; i<=shows.length;i++)\
+            \{\
+                displayShow(i);\
+            \}\
+            \
+        \}*/\
+        \
+        function displayShow()\
+        \{   \
+            //var n = 0;\
+            \
+            //var show = shows[n];\
+            \
+            alert(show.getVen());\
+            \
+            //document.write(show.getVen());\
+           // document.write("shaka");\
+            \
+            \
+        \}\
+        \
+        function add()\
+        \{\
+            var show = new event();\
+            \
+            show.setVen(document.getElementById("Venue").value);\
+            show.setAdd(document.getElementById("Address").value);\
+            show.setCity(document.getElementById("City").value);\
+            show.setSt(document.getElementById("State").value);\
+            show.setZip(document.getElementById("Zip").value);\
+            show.setDate(document.getElementById("Date").value);\
+            show.setTime(document.getElementById("Time").value);\
+            show.setTicket(document.getElementById("Ticket").value);\
+            show.setPhone(document.getElementById("Phone").value);\
+            show.setUrl(document.getElementById("Website").value);\
+            show.setActs(document.getElementById("Support").value);\
+            \
+            shows[counter] = show;\
+            \
+            window.alert("Show added");\
+            \
+            text = show.getVen;\
+            \
+            alert(text);\
+            \
+            \
+        \}\
+        \
+        function event(ven, add, city, st, zip, date, time, tic, phone, url, acts)\
+        \{\
+            this.ven=ven;\
+            this.add=add;\
+            this.city=city;\
+            this.st=st;\
+            this.zip=zip;\
+            this.date=date;\
+            this.time=time;\
+            this.tic=tic;\
+            this.phone=phone;\
+            this.url=url;\
+            this.acts=acts;\
+            \
+        \}\
+        \
+        \
+        //SETTERS\
+        event.prototype.setVen = function(ven)\
+        \{\
+            this.ven = ven;\
+        \}\
+        \
+        event.prototype.setAdd = function(a)\
+        \{\
+            this.add = a;\
+        \}\
+        \
+        event.prototype.setCity = function(city)\
+        \{\
+            this.city = city;\
+        \}\
+        \
+        event.prototype.setSt = function(st)\
+        \{\
+            this.st = st;\
+        \}\
+        \
+        event.prototype.setZip = function(zip)\
+        \{\
+            this.zip = zip;\
+        \}\
+        \
+        event.prototype.setDate = function(date)\
+        \{\
+            this.date = date;\
+        \}\
+        \
+        event.prototype.setTime = function(time)\
+        \{\
+            this.time = time;\
+        \}\
+        \
+        event.prototype.setTicket = function(t)\
+        \{\
+            this.tic = t;\
+        \}\
+        \
+        event.prototype.setPhone = function(p)\
+        \{\
+            this.phone = p;\
+        \}\
+        \
+        event.prototype.setUrl = function(u)\
+        \{\
+            this.url = u;\
+        \}\
+        \
+        event.prototype.setActs = function(a)\
+        \{\
+            this.acts = a;\
+        \}\
+        \
+        \
+        \
+        //GETTERS\
+        event.prototype.getVen = function()\
+        \{\
+           return this.ven;    \
+        \}\
+        \
+        event.prototype.getAdd = function()\
+        \{\
+           return this.add;    \
+        \}\
+        \
+        event.prototype.getCity = function()\
+        \{\
+           return this.city;    \
+        \}\
+        \
+        event.prototype.getSt = function()\
+        \{\
+           return this.st;    \
+        \}\
+        \
+        event.prototype.getZip = function()\
+        \{\
+           return this.zip;    \
+        \}\
+        \
+        event.prototype.getDate = function()\
+        \{\
+           return this.date;    \
+        \}\
+        \
+        event.prototype.getTime = function()\
+        \{\
+           return this.time;    \
+        \}\
+        \
+        event.prototype.getTicket = function()\
+        \{\
+           return this.tic;    \
+        \}\
+        \
+        event.prototype.getPhone = function()\
+        \{\
+           return this.phone;    \
+        \}\
+        \
+        event.prototype.getUrl = function()\
+        \{\
+           return this.url;    \
+        \}\
+        \
+        event.prototype.getActs = function()\
+        \{\
+           return this.acts;    \
+        \}\
+        \
+    \
+    \
+    \
+    \
+    </script>\
+\
+\
+</body>\
+\
+</html>\
+\
+}
