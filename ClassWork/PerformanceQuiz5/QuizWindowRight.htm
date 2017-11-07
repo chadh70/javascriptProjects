@@ -1,0 +1,62 @@
+<html>
+
+    <body>
+    
+        <!-- this is the radio set-->
+        
+    <form id="radioSet" onClick="changeSelect()">
+        <input type="radio" name="set" id="radio1" value="1">1<br>
+        <input type="radio" name="set" id="radio2" value="2">2<br>
+        <input type="radio" name="set" id="radio3" value="3">3<br>
+        <input type="radio" name="set" id="radio4" value="4">4<br>
+        <input type="radio" name="set" id="radio5" value="5">5<br>
+
+        
+        </form>
+    
+    
+    
+    </body>
+    
+    
+    
+    
+<script>
+    
+    //this function sets the value of the intended radio button referenced by n as true
+    function changeRadio(n)
+    {
+        
+        document.getElementById("radio"+n).checked = true;
+    }
+    
+    
+    //this function loops through the radio buttons and decides which one is checked
+    //then it calls a function from the left frame that changes the selection in the drop box
+    function changeSelect()
+    {           
+
+        //this loops 1-5 to reference the radio button
+        for(i=1;i<6;i++)
+            {
+                //this is a conditional statemenet that determines if a radio button is selected or not
+                if(document.getElementById("radio"+i).checked)
+                    {
+                        //this assigns the value of selected radio button to variable
+                        var choice = document.getElementById("radio"+i).value;
+
+                        //passes the variable through the changeSelect function of the "sybling" element meaning another child of the parent element
+                        window.parent.leftFrame.changeSelect(choice);
+                    }
+            }
+
+
+        
+    }
+    
+    
+    </script>
+
+
+
+</html>

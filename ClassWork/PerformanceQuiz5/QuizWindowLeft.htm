@@ -1,0 +1,46 @@
+<html>
+
+    <body>
+    
+        <!-- this is the select box-->
+        <select id="selectBox" onChange="changeRadio()">
+          <option value="1" >1</option>
+          <option value="2" >2</option>
+          <option value="3" >3</option>
+          <option value="4" >4</option>
+          <option value="5" >5</option>
+        </select>
+    
+    
+    
+    </body>
+     
+    
+<script>
+    
+    //this changes the value of the corresponding element in the right frame
+    function changeRadio()
+    {
+        //gets the value of the selection box
+        var choice = document.getElementById("selectBox").value;
+
+        //passes through the changeRadio function of the sybling element
+        window.parent.rightFrame.changeRadio(choice);
+        
+    }
+    
+    //changes the selection
+    function changeSelect(n)
+    {
+        //whatever number is passed through this functin will change the number in the seleciton box
+        document.getElementById("selectBox").value = n;
+        
+    }
+    
+    
+    
+    </script>
+
+
+
+</html>

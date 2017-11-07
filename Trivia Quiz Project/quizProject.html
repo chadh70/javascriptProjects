@@ -15,12 +15,18 @@
         
         <hr>
         
+        
+        
+        
+        <p id="quizDisplay"></p>
+        
     <script lang="text/javascript">//begin javascript code
         
         var myQuiz = new Array();//create an array to store questions
         
         var grade = 0;
-        var runningGrade;
+        var runningGrade = 0;
+        
         
         myQuiz[0] = new Array();// this array hold the questions and answers to the first questions in the quiz
         
@@ -82,10 +88,13 @@
         
         myQuiz[4] = new Array();// this array hold the questions and answers to the fourth questions in the quiz
         
-        myQuiz[4][0] = "<h3>What is 3+3? (Please enter the number value)</h3>";//question 4
+        myQuiz[4][0] = "<h3>What is 3+3? </h3>";//question 4
         myQuiz[4][1] = new Array();
-        myQuiz[4][2]="6";
+        myQuiz[4][2]= new Array("6","six","Six");
         myQuiz[4][3]="fill";
+        
+        
+        var numQuestions = myQuiz.length;
         
         
             
@@ -93,25 +102,42 @@
         myQuiz.sort(function(a, b){return 0.5 - Math.random()});
         
         
+        
         var loopCounter1 = 0;// counter for question arrays
         var loopCounter2 = 0;// counter for answers
         var loopCounter3 = 0;// counter for answer check
         
         
-        
-        
-        
         //randomizes answers
-        myQuiz[loopCounter1][1].sort(function(a, b){return 0.5 - Math.random()});
+        myQuiz[loopCounter1].sort(function(a, b){return 0.5 - Math.random()});
+        
+        
+        //have a button to start quiz 
+        document.getElementById("quizDisplay").innerHTML = "<br><button onclick=\"startQuiz() \" id='startButton'>Start Quiz</button></form>";// this closes the form
+
+            
+    
         
         
         function startQuiz()
         {
+            
+            
+            
+            numQuestions = prompt("How many questions would you like to answer? There are "+numQuestions+" questions available to choose from.");
+            
+            document.getElementById("startButton").style.display = "none";
+            
+            
             displayQuestion();
+            
         }
         
-        //startQuiz();
-        displayQuestion();
+
+            
+
+        
+        
         
         function displayQuestion()
         {
@@ -119,7 +145,6 @@
             switch(myQuiz[loopCounter1][3]) 
             {
             case "mc":
-               
                 multipleChoiceQuestion();
                 break;
             case "fill":
@@ -129,17 +154,20 @@
             }
             
             
+            
+            
         }
         
         
+        //display fill in the blank question
         function fillQuestion()
         {
-             document.write(myQuiz[loopCounter1][0]+"<form action=\"\" >");//writes questions
+              document.getElementById("quizDisplay").innerHTML = myQuiz[loopCounter1][0]+"<form action=\"\" >";//writes questions
 
 
                 
                         // tget user input
-                        document.write("<input type=\"text\" id=\"answerBox\" name=\"answer\" value=\"\"> <br>");
+                         document.getElementById("quizDisplay").innerHTML += "<input type=\"text\" id=\"answerBox\" name=\"answer\" value=\"\"> <br>";
 
                         //this increases the loop to next question
                         loopCounter2++;       
@@ -147,32 +175,36 @@
                     
 
 
-            document.write("<br><button onclick=\"checkAnswer()\">Next Question</button></form><hr>");// this closes the form
+             document.getElementById("quizDisplay").innerHTML += "<br><button onclick=\"checkAnswer()\">Next Question</button></form><hr>";// this closes the for
 
             
         }
        
         
+        //display multiple choice question
+        
         function multipleChoiceQuestion()
         {
         
-            document.write(myQuiz[loopCounter1][0]+"<form action=\"\" >");//begins loop for first question
+             document.getElementById("quizDisplay").innerHTML = myQuiz[loopCounter1][0]+"<form action=\"\" >";//begins loop for first question
 
 
                 while (loopCounter2 < 4)// while loop to filter through answers
                     {
                         // these two lines writes an answer and radio button to document
-                        document.write("<input type=\"radio\" id=\"answerRadio" +loopCounter1+ loopCounter2 +
+                         document.getElementById("quizDisplay").innerHTML += "<input type=\"radio\" id=\"answerRadio" +loopCounter1+ loopCounter2 +
                                        "\" name=\"answer\" value=\"" + myQuiz[loopCounter1][1][loopCounter2] + 
-                                       "\"> "+ myQuiz[loopCounter1][1][loopCounter2]+"<br>");
+                                       "\"> "+ myQuiz[loopCounter1][1][loopCounter2]+"<br>";
 
                         //this increases the loop to next question
                         loopCounter2++;       
 
                     }
+            
+            loopCounter2=0;//reset loop counter 2
 
 
-            document.write("<br><button onclick=\"checkAnswer()\">Next Question</button></form><hr>");// this closes the form
+             document.getElementById("quizDisplay").innerHTML += "<br><button onclick=\"checkAnswer()\">Next Question</button></form><hr>";// this closes the form
 
             
             
@@ -181,19 +213,25 @@
         
     
         
-        
+        //this function checks the answer
         function checkAnswer()
         {     
             
+            //this is will be assignedd the value of the answer provided
             var checkedAnswer = false;
             
+            
+            //if the quesiton is a multiple choice question, this code will run
             if(myQuiz[loopCounter1][3] == "mc")
                {
                
+                   
                
             while(loopCounter3 < myQuiz[loopCounter1][1].length)
                 {
+                   
                     
+    
                     if (document.getElementById("answerRadio" +loopCounter1+loopCounter3).checked)
                     {
 
@@ -205,26 +243,43 @@
                     loopCounter3++;
                     
                 }
+                   
+                   loopCounter3=0;
+                   
+                   
+                   
+                              
+            //the grade per answer
+            if(checkedAnswer == myQuiz[loopCounter1][2])
+                {
+                    grade++;
+                    
+                }
             
         }
+            
+            
+            //if the question is a fill in the blank this code will run
             
             if(myQuiz[loopCounter1][3] == "fill")
             {
                 checkedAnswer = document.getElementById("answerBox").value;
+                
+                //the grade per answer
+            if( myQuiz[loopCounter1][2].includes(checkedAnswer))
+                {
+                    grade++;
+                    
+                }
             }
         
             
-            
-            if(checkedAnswer == myQuiz[loopCounter1][2])
-                {
-                    grade++;
-                    runningGrade++;
-                }
             
             
             if(grade>0)
                 {
                     alert("Correct!")
+                    runningGrade++;
                 }
             else
                 {
@@ -234,8 +289,34 @@
             
             loopCounter1++;
             grade=0;
+            
+            
+            displayNext();
+            
+        }
+        
+        
+        function displayNext()
+        {
+            
+            if(loopCounter1 < numQuestions)
+               {
+               displayQuestion();
+               }
+               else
+               {
+                displayGrade();
+               }
+               
+               
+        }
+        
+        function displayGrade()
+        {
+            document.getElementById("quizDisplay").innerHTML = runningGrade + " out of "+ numQuestions;
         }
          
+      
              
         
         //END OF SCRIPT
