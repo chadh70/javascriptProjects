@@ -5,7 +5,7 @@
     <body style="padding : 25px;"> <!-- begin document body -->
     
     <h1> <!-- heading -->
-        Math Quiz 1
+        The Math Quiz
         </h1>
         
     <h2> <!-- about the quiz -->
@@ -15,10 +15,33 @@
         
         <hr>
         
+        <div id="startPage">
         
+        <h3>Would you like a 1 minute timer?</h3>
+        <form id="radioForm">
+            
+          <input type="radio" name="timerSelect" id="yesButton" value="yes">Yes<br>
+        </form>
+        
+        <h3>How many questions would you like?</h3>
+        <select id="questionSelect">
+            
+          <option value="1">1<option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        <option value="5">5</option>
+        </select>
+            
+            </div>
+        
+        <p id="timer"></p>
         
         
         <p id="quizDisplay"></p>
+        
+        
+        
         
     <script lang="text/javascript">//begin javascript code
         
@@ -99,7 +122,7 @@
         
             
         //randomizes questions
-        myQuiz.sort(function(a, b){return 0.5 - Math.random()});
+        //myQuiz.sort(function(a, b){return 0.5 - Math.random()});
         
         
         
@@ -109,7 +132,7 @@
         
         
         //randomizes answers
-        myQuiz[loopCounter1].sort(function(a, b){return 0.5 - Math.random()});
+        //myQuiz[loopCounter1].sort(function(a, b){return 0.5 - Math.random()});
         
         
         //have a button to start quiz 
@@ -121,20 +144,35 @@
         
         function startQuiz()
         {
+
+            
+            
+            numQuestions = document.getElementById("questionSelect").value;
+            
+            
+           
+            if(document.getElementById("yesButton").checked);
+               {
+                startTimer();
+                   
+                   
+                setTimeout(displayGrade,60000);
+               }
             
             
             
-            numQuestions = prompt("How many questions would you like to answer? There are "+numQuestions+" questions available to choose from.");
             
-            document.getElementById("startButton").style.display = "none";
-            
-            
-            displayQuestion();
+           if(numQuestions > 0 || numQuestions < 6)
+           {
+               document.getElementById("startPage").style.display = "none";
+        
+               
+               displayQuestion();
+           }
             
         }
         
-
-            
+ 
 
         
         
@@ -296,6 +334,9 @@
         }
         
         
+        
+        
+        //display next question
         function displayNext()
         {
             
@@ -311,9 +352,39 @@
                
         }
         
+        
+        //display grade
         function displayGrade()
         {
-            document.getElementById("quizDisplay").innerHTML = runningGrade + " out of "+ numQuestions;
+            document.getElementById("timer").style.display = "none";
+            
+            document.getElementById("quizDisplay").innerHTML = runningGrade + " out of "+ numQuestions +"<br>Please exit browser. Thank you for taking the Math Quiz!";
+            
+            
+        }
+        
+
+        
+    
+        //this function runs the timer
+        function startTimer()
+        {
+
+            var totalTime = 60;
+            
+
+
+            var timer = setInterval(decrement, 1000);
+
+
+            function decrement()
+            {
+                totalTime = totalTime - 1;
+
+                document.getElementById("timer").innerHTML = "Timer: "+ totalTime;
+
+            }
+
         }
          
       
