@@ -1,0 +1,99 @@
+<html>
+    
+
+<body><!-- on load draw screen -->
+
+    <div id="content"></div> <!-- this div displays content -->
+    
+    <script> 
+        /*
+        var seatArray = ["availableSeat.png", 0];// this is a seat array element
+        
+        
+        //this draws the screen
+        function writeScreen()
+        {
+            //this is the content text string
+            var content = "<img src="+seatArray[0]+" onClick=\"selectSeat()\" width=\"100\">";
+            
+            //this displays content text string
+            document.getElementById("content").innerHTML = content;
+            
+        }
+        
+        //this function selects the seat
+        function selectSeat()
+        {
+            
+            //decide which value is in the select seat boolean value
+            switch(seatArray[1])
+            {
+                //if value is zero it means that seat is not selected, select the seat, draw selected seat, change value to 1 for selected seat
+                case 0:
+                    seatArray[0]="selectedSeat.png";
+                    seatArray[1]=1;
+                    writeScreen();
+                    break;
+                    
+                //if value is 1, it means that seat is selected and user wants to unselect it, display results
+                case 1:
+                    seatArray[0]="availableSeat.png";
+                    seatArray[1]=0;
+                    writeScreen();
+                    break;
+                    
+                //this means the seat is taken, choose another. alert user
+                case 2:
+                    alert("this seat is taken");
+                    break;
+                    
+                //an error occured
+                default:
+                    alert("unknown error. try again");
+                    
+            }
+                    
+            
+        } */
+        
+        
+        /*
+        var departure = "LAX";
+        var destination = "BNA";
+        var date = "December 12-15";
+        var gate = "1";
+    
+    seatArray = ["availableSeat.png", 0, ""];
+        
+        //location and to destination, date, time, gate number
+        
+        for(i=0; i<16; i++)
+            {
+                document.write("var seatArray"+i+"=[\"availableSeat.png\",0,flight,price,1,date];<br>");
+            }
+        */
+        
+            //function buildPlane()
+    
+        var planeArray = new Array();
+        
+        for(i=0; i<15; i++)
+            {
+                planeArray[i]= new Array();
+                planeArray[i][0]=0;
+                planeArray[i][1]=1;
+                planeArray[i][2]=2;
+                planeArray[i][3]=3;
+                planeArray[i][4]=4;
+                planeArray[i][5]=5;
+            }
+        
+        document.write(planeArray[4]);
+        
+    
+        
+        
+    </script>
+
+</body>
+</html>

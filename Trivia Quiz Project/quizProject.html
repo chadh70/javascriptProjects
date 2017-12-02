@@ -10,12 +10,12 @@
         
     <h2> <!-- about the quiz -->
         This quiz covers basic mathematic operations such as addition, multiplication, subtraction, and division. The student will have unlimited times to take the quiz and is not timed. The final submission will be graded. 
-        </h2>
+        </h2> 
         
         
         <hr>
         
-        <div id="startPage">
+        <div id="startPage"> 
         
         <h3>Would you like a 1 minute timer?</h3>
         <form id="radioForm">
@@ -24,16 +24,11 @@
         </form>
         
         <h3>How many questions would you like?</h3>
-        <select id="questionSelect">
             
-          <option value="1">1<option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        <option value="5">5</option>
-        </select>
+        <div id="selectDiv"></div>
             
-            </div>
+        <!--end of start page div tag -->
+        </div> 
         
         <p id="timer"></p>
         
@@ -121,6 +116,22 @@
         
         
             
+        //create select tag
+        function createSelect()
+        {
+            var selectStr = "<select id=\"questionSelect\">";
+            
+            for(i=1; i <= numQuestions; i++)
+                {
+                    selectStr+="<option value=\"" + i + "\">" + i + "</option>";
+                }
+            
+            selectStr+="</select>";
+            
+            document.getElementById("selectDiv").innerHTML = selectStr;
+        }
+        
+        
         //randomizes questions
         //myQuiz.sort(function(a, b){return 0.5 - Math.random()});
         
@@ -135,23 +146,25 @@
         //myQuiz[loopCounter1].sort(function(a, b){return 0.5 - Math.random()});
         
         
+        //creates drop down
+        createSelect();
+        
+        
         //have a button to start quiz 
         document.getElementById("quizDisplay").innerHTML = "<br><button onclick=\"startQuiz() \" id='startButton'>Start Quiz</button></form>";// this closes the form
 
-            
-    
-        
-        
-        function startQuiz()
-        {
 
+        
+        //this function starts the quiz
+        function startQuiz()
+        {            
             
-            
+            //sets the number of questions
             numQuestions = document.getElementById("questionSelect").value;
             
-            
-           
-            if(document.getElementById("yesButton").checked);
+
+           //if timer is selected, set timer functions
+            if(document.getElementById("yesButton").checked)
                {
                 startTimer();
                    
@@ -162,12 +175,13 @@
             
             
             
-           if(numQuestions > 0 || numQuestions < 6)
+           if(numQuestions > 0 )
            {
                document.getElementById("startPage").style.display = "none";
         
                
                displayQuestion();
+               
            }
             
         }
@@ -176,7 +190,7 @@
 
         
         
-        
+        //this function displays questions
         function displayQuestion()
         {
             
@@ -186,7 +200,6 @@
                 multipleChoiceQuestion();
                 break;
             case "fill":
-                
                 fillQuestion();
                 break;
             }
@@ -223,7 +236,7 @@
         
         function multipleChoiceQuestion()
         {
-        
+             
              document.getElementById("quizDisplay").innerHTML = myQuiz[loopCounter1][0]+"<form action=\"\" >";//begins loop for first question
 
 
@@ -361,9 +374,50 @@
             document.getElementById("quizDisplay").innerHTML = runningGrade + " out of "+ numQuestions +"<br>Please exit browser. Thank you for taking the Math Quiz!";
             
             
+            localStorageCalc();
+            
         }
         
 
+        //this function managers calculations with running average in local storage
+        function localStorageCalc()
+        {
+            var totalCorrectQuestions = localStorage.getItem("totalCorrectQuestions");
+            var totalQuestionsAsked = localStorage.getItem("totalQuestionsAsked");
+            
+            
+            
+            localStorage.removeItem("totalCorrectQuestions");
+            localStorage.removeItem("totalQuestionsAsked");
+            
+            
+            
+            if(totalCorrectQuestions < 1)
+                {
+                    totalCorrectQuestions = 0;
+                }
+            
+            if(totalQuestionsAsked < 1)
+                {
+                    totalQuestionsAsked = 0;
+                }
+            
+            
+            totalCorrectQuestions = parseInt(totalCorrectQuestions)+parseInt(runningGrade);
+            totalQuestionsAsked = parseInt(totalQuestionsAsked) + parseInt(numQuestions);
+            
+            alert(totalCorrectQuestions);
+            alert(totalQuestionsAsked);
+            
+            var runningAverageDisplay = totalCorrectQuestions/totalQuestionsAsked*100;
+            
+            
+            localStorage.setItem("totalCorrectQuestions", totalCorrectQuestions);
+            localStorage.setItem("totalQuestionsAsked", totalQuestionsAsked);
+        
+            document.getElementById("quizDisplay").innerHTML += ("<br>You have a running average of " + runningAverageDisplay +"%");
+        
+        }
         
     
         //this function runs the timer

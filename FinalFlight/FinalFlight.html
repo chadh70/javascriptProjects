@@ -1,0 +1,187 @@
+<html>
+
+    <style>
+        .seatImg {padding:10px}
+        
+        body {padding:10px}
+    
+    
+    </style>
+    
+<body onLoad="startPage()">
+
+
+<div id="display">
+    
+    
+    </div>
+
+
+<script>
+
+    var content;
+    
+    var flight="No flight selected.";
+    
+    var planeArray = new Array();  
+    
+    var price = 0;
+    
+    
+    function buildPlane()
+    {
+        
+        for(i=0; i<15; i++)
+            {
+                planeArray[i]= new Array();
+                planeArray[i][0]="availableSeat.png";
+                planeArray[i][1]=0;
+                planeArray[i][2]=flight;
+                planeArray[i][3]=price;
+                planeArray[i][4]=1;
+                planeArray[i][5]=date;
+                planeArray[i][6]=seatNum(i);
+            }
+        
+    }
+    
+    buildPlane();
+
+    
+    var price = 65;
+    
+    var date = "December 15th 7:00pm - December 17th 10:30am";
+    
+
+    //display start page
+    function startPage()
+    {
+        //alert(planeArray[0][3]);
+        
+        content = "<br><h1>Welcome to Continental Airlines!</h1> <br> <h2>Where would you like to fly?</h2> <br>";
+        
+        
+        content += "<h3 onclick=\"chooseFlight('BNA to LAX')\">BNA to LAX</h3>";
+        
+        content += "<h3 onclick=\"chooseFlight('LAX to BNA')\">LAX to BNA</h3>";
+        
+        content += "<h3 onclick=\"chooseFlight('BNA to JFK')\">BNA to JFK</h3>";
+        
+        content += "<h3 onclick=\"chooseFlight('JFK to BNA')\">JFK to BNA</h3>";
+        
+        document.getElementById("display").innerHTML = content; 
+        
+    }
+    
+    
+    //this displays the chooseflight page
+    function chooseFlight(flight)
+    {   
+        //this is the string that contains the HTML display
+        content = "<h1>You are flying "+flight+"</h1><br><div id=\"content\"></div>";
+        
+        document.getElementById("display").innerHTML = content;
+        
+        drawPlane();
+        
+        
+    }
+    
+    
+     //this draws the screen
+        function drawPlane()
+        {
+            //this is the content text string
+            var content="<br><h2 =>Seats 1-7 on the right side of the plane</h2>";
+
+            
+            for(i=0;i<14;i++)
+                {                    
+                    content += "<img src="+planeArray[i][0]+" class=\"seatImg\" id=\""+seatNum(i)+"\" onClick=\"selectSeat("+i+")\" width=\"50\">";
+                    
+                    if(i==6)
+                        {
+                            content += "<br><h2>Seats 8-14 on the left side of the plane</h2>";
+                        }
+                    
+                }
+            
+            
+            //this displays content text string
+            document.getElementById("content").innerHTML = content;
+            
+        }
+    
+    
+    function seatNum(index)
+    {
+        switch(index)
+        {
+            case(0):return "A1"; break;
+            case(1):return "A2"; break;
+            case(2):return "A3"; break;
+            case(3):return "A4"; break;
+            case(4):return "A5"; break;
+            case(5):return "A6"; break;
+            case(6):return "A7"; break;
+            case(7):return "B1"; break;
+            case(8):return "B2"; break;
+            case(9):return "B3"; break;
+            case(10):return "B4"; break;
+            case(11):return "B5"; break;
+            case(12):return "B6"; break;
+            case(13):return "B7"; break;
+        }
+
+    }
+    
+
+    
+    //this function selects the seat
+        function selectSeat(seat)
+        {
+            
+            //decide which value is in the select seat boolean value
+            switch(planeArray[seat][1])
+            {
+                //if value is zero it means that seat is not selected, select the seat, draw selected seat, change value to 1 for selected seat
+                case 0:
+                    planeArray[seat][0]="selectedSeat.png";
+                    planeArray[seat][1]=1;
+                    drawPlane();
+                    break;
+                    
+                //if value is 1, it means that seat is selected and user wants to unselect it, display results
+                case 1:
+                    planeArray[seat][0]="availableSeat.png";
+                    planeArray[seat][1]=0;
+                    drawPlane();
+                    break;
+                    
+                //this means the seat is taken, choose another. alert user
+                case 2:
+                    alert("this seat is taken");
+                    break;
+                    
+                //an error occured
+                default:
+                    alert("unknown error. try again");
+                    
+            }
+            
+        }
+    
+    
+
+
+
+</script>
+
+
+
+
+</body>
+
+
+
+</html>
