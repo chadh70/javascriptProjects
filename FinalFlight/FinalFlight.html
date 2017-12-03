@@ -3,6 +3,8 @@
     <style>
         .seatImg {padding:3px;display: inline;}
         
+        .qrImg {padding:3px;display: inline; float:right;}
+        
         body {padding:10px;}
     
         .selectedTicket{border-color:black; border-style: solid; background-color:azure; margin:15px;}
@@ -332,7 +334,7 @@ var seatsSelectedCount = 0;
             {
                 content="<br>";
         
-                content+="<h2>Order Form</h2><form>First name:<br><input type=\"text\" name=\"firstname\"><br>Last name:<br><input type=\"text\" name=\"lastname\"><br><br>Credit/Debit Card Number:<br><input type=\"text\" name=\"payment\"><br><br> <div id=\"address\"Address:<br><input type=\"text\" name=\"address\"><br>City:<br><input type=\"text\" name=\"city\"><br>State:<br><input type=\"text\" name=\"state\"><br>ZIP:<br><input type=\"text\" name=\"zip\"></div><br><br>Phone:<br><input type=\"text\" name=\"lastname\"><br>Email:<br><input type=\"text\" name=\"lastname\"><br><br><br><button type=\"button\" class=\"buttons\" onclick=\"orderSummary()\">Place Order</button></form> ";
+                content+="<h2>Order Form</h2><form name=\"userProfile\">First name:<br><input type=\"text\" name=\"firstname\"><br>Last name:<br><input type=\"text\" name=\"lastname\"><br><br>Credit/Debit Card Number:<br><input type=\"text\" name=\"payment\"><br><br> <div id=\"address\"Address:<br><input type=\"text\" name=\"address\"><br>City:<br><input type=\"text\" name=\"city\"><br>State:<br><input type=\"text\" name=\"state\"><br>ZIP:<br><input type=\"text\" name=\"zip\"></div><br><br>Phone:<br><input type=\"text\" name=\"phone\"><br>Email:<br><input type=\"text\" name=\"email\"><br><br><br><button type=\"button\" class=\"buttons\" onclick=\"orderSummary()\">Place Order</button></form> ";
 
                 document.getElementById("display").innerHTML=content;
             }
@@ -350,9 +352,21 @@ var seatsSelectedCount = 0;
     {
         finalizeOrder();
         
-        content = "<h2>Your order has been placed</h2><p>Please arrive in plenty of time before your flight to allow time to find your gate and get through security.</p>"
-            
-        content += "<br><button type=\"button\" class=\"buttons\" onclick=\"startPage()\">Place another order</button>";
+        content = "<h2>Your order has been placed</h2><p>Please arrive in plenty of time before your flight to allow time to find your gate and get through security. Find ticket information below.</p><h3>Order Information</h3><p>Name: "+ document.forms["userProfile"]["firstname"].value + " " + document.forms["userProfile"]["lastname"].value + "</p><p>Address: " + document.forms["userProfile"]["address"].value + "</p><p>City: " + document.forms["userProfile"]["city"].value + "</p><p>State: " + document.forms["userProfile"]["state"].value + "</p><p>ZIP: " + document.forms["userProfile"]["zip"].value + "</p><p>Phone: " + document.forms["userProfile"]["phone"].value + "</p><p>Email: "+ document.forms["userProfile"]["email"].value;
+
+        
+        //this displays each ticket
+        for(i=0;i<planeArray.length;i++)
+            {
+                if(planeArray[i][1])
+                   {
+                    content+="<div class=\"selectedTicket\"><img src=\"qrcode.png\" class=\"qrimg\" width=\"250px\"><h3>Seat number: " + seatNum(i) + "</h3><h4>Class: " + planeArray[i][9]+
+                            "</h4><p>Price: $" + planeArray[i][3] +
+                            "</p><p>Departure: " + departure + "</p><p>Return: " + returnTime + "</p><p>Location: "+planeArray[i][8]+"</div>";
+                   }
+            }
+        
+        content+="<button type=\"button\" class=\"buttons\" onclick=\"startPage()\">Place another order</button>";
         
         document.getElementById("display").innerHTML = content;
     }
@@ -371,11 +385,11 @@ var seatsSelectedCount = 0;
               planeArray[i][0]="takenSeat.png";
               }
           }
+        
+        
+        
     }  
-       
-            
     
-
 
 
 </script>
